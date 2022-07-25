@@ -40,6 +40,9 @@ RUN mkdir -p "$RUNNER_ASSETS_DIR" \
     && mkdir /opt/hostedtoolcache \
     && chmod g+rwx /opt/hostedtoolcache
 
+RUN mkdir /runner && \
+    chown runner:runner /runner
+
 USER runner
 
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
