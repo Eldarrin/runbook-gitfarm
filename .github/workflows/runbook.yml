@@ -1,0 +1,14 @@
+name: RunBook
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ["self-hosted", "main"]
+
+    steps:
+      - name: script
+        run: |
+          export POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')

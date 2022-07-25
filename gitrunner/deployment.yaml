@@ -1,0 +1,27 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: test-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-runner
+  template:
+    metadata:
+      labels:
+        app: test-runner
+    spec:
+      containers:
+        - name: test-runner
+          image: "eldarrin/gitrunners/testrunner:latest"
+          imagePullPolicy: Always
+          env:
+            - name: RUNNER_NAME
+              value: "main"
+            - name: DISABLE_AUTO_UPDATE
+              value: "true"
+            - name: EPHEMERAL
+              value: "true"
+            - name: RUNNER_TOKEN
+              value: "{{ secrets.RUNNER_TOKEN }}"
