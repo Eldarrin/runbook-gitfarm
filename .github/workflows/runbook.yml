@@ -6,7 +6,7 @@ on:
 jobs:
   build:
 
-    runs-on: ["self-hosted", "main"]
+    runs-on: ["self-hosted", "Linux", "x64"]
 
     steps:
       - name: script
