@@ -23,4 +23,9 @@ jobs:
           docker push eldarrin/main-log-test:latest
 
       - name: build agent
-        run: docker build -t eldarrin/runner:latest gitrunner/.
+        run: docker build -t eldarrin/testrunner:latest gitrunner/.
+
+      - name: push agent
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u eldarrin --password-stdin
+          docker push eldarrin/testrunner:latest
