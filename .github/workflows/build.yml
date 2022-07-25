@@ -23,4 +23,4 @@ jobs:
           docker push eldarrin/main-log-test:latest
 
       - name: build agent
-        run: docker-build -t eldarrin/runner:latest gitrunner/.
+        run: docker build -t eldarrin/runner:latest gitrunner/.
