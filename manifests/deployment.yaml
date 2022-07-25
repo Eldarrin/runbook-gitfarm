@@ -1,0 +1,18 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: tester
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tester
+  template:
+    metadata:
+      labels:
+        app: tester
+    spec:
+      containers:
+        - name: tester
+          image: "main-log-test:latest"
+          imagePullPolicy: Always

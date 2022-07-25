@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: build
+        run: docker build -t main-log-test:latest .
+
+      - name: publish
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u eldarrin --password-stdin
+          docker push eldarrin/main-log-test:latest
