@@ -1,6 +1,8 @@
 name: RunBook
 
 on:
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -15,8 +17,17 @@ jobs:
         run: |
           $cmdOutput = kubectl get pods --namespace ${{ secrets.NAMESPACE }} -l app=tester -o jsonpath='{.items[0].metadata.name}'
           echo $cmdOutput
-          kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput
+          kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput > test.log
         shell: powershell
+
+      - name: Create Issue From File
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: An example issue
+          content-filepath: test.log
+          labels: |
+            report
+            automated issue
 
   runbook-prod:
 
@@ -29,5 +40,14 @@ jobs:
         run: |
           $cmdOutput = kubectl get pods --namespace ${{ secrets.NAMESPACE }} -l app=tester -o jsonpath='{.items[0].metadata.name}'
           echo $cmdOutput
-          kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput
+          kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput > prod.log
         shell: powershell
+
+      - name: Create Issue From File
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: An production issue
+          content-filepath: prod.log
+          labels: |
+            report
+            bug
