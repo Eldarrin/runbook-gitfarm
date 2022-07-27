@@ -5,11 +5,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  status-check:
 
     runs-on: ubuntu-latest
 
     steps:
       - name: not letting you pull
         run: |
-          exit 0
+          exit 1
