@@ -15,7 +15,7 @@ jobs:
         run: |
           set POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
           echo $POD_NAME
-        shell: powershell.exe
+        shell: powershell
 
   runbook-prod:
 
@@ -28,4 +28,4 @@ jobs:
         run: |
           set POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
           echo $POD_NAME
-        shell: powershell.exe
+        shell: powershell
