@@ -13,8 +13,9 @@ jobs:
     steps:
       - name: powershell
         run: |
-          set POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
-          echo $POD_NAME
+          $cmdOutput = kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}'
+          echo $cmdOutput
+          kubectl logs --namespace dev $cmdOutput
         shell: powershell
 
   runbook-prod:
@@ -26,6 +27,7 @@ jobs:
     steps:
       - name: script
         run: |
-          set POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
-          echo $POD_NAME
+          $cmdOutput = kubectl get pods --namespace prod -l app=tester -o jsonpath='{.items[0].metadata.name}'
+          echo $cmdOutput
+          kubectl logs --namespace prod $cmdOutput
         shell: powershell
