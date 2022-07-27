@@ -11,10 +11,11 @@ jobs:
     runs-on: ["self-hosted", "Windows", "x64"]
 
     steps:
-      - name: script
+      - name: powershell
         run: |
-          export POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
+          set POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
           echo $POD_NAME
+        shell: powershell.exe
 
   runbook-prod:
 
@@ -25,5 +26,6 @@ jobs:
     steps:
       - name: script
         run: |
-          export POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
+          set POD_NAME=$(kubectl get pods --namespace dev -l app=tester -o jsonpath='{.items[0].metadata.name}')
           echo $POD_NAME
+        shell: powershell.exe
