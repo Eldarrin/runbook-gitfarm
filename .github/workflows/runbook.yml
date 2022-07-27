@@ -18,6 +18,7 @@ jobs:
           $cmdOutput = kubectl get pods --namespace ${{ secrets.NAMESPACE }} -l app=tester -o jsonpath='{.items[0].metadata.name}'
           echo $cmdOutput
           kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput > test.log
+          echo "badbranch" >> prod.log
           $a = "./test.log"
           $b = "./test-utf8.log"
           (Get-Content -path $a) | Set-Content -Encoding UTF8 -Path $b
@@ -44,6 +45,7 @@ jobs:
           $cmdOutput = kubectl get pods --namespace ${{ secrets.NAMESPACE }} -l app=tester -o jsonpath='{.items[0].metadata.name}'
           echo $cmdOutput
           kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput > prod.log
+          echo "badbranch" >> prod.log
           $a = "./prod.log"
           $b = "./prod-utf8.log"
           (Get-Content -path $a) | Set-Content -Encoding UTF8 -Path $b
