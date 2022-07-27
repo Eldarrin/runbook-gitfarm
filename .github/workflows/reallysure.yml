@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: not letting you pull
         run: |
-          exit 1
+          exit 0
