@@ -18,13 +18,16 @@ jobs:
           $cmdOutput = kubectl get pods --namespace ${{ secrets.NAMESPACE }} -l app=tester -o jsonpath='{.items[0].metadata.name}'
           echo $cmdOutput
           kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput > test.log
+          $a = "./test.log"
+          $b = "./test-utf8.log"
+          (Get-Content -path $a) | Set-Content -Encoding UTF8 -Path $b
         shell: powershell
 
       - name: Create Issue From File
         uses: peter-evans/create-issue-from-file@v4
         with:
           title: An example issue
-          content-filepath: test.log
+          content-filepath: test-utf8.log
           labels: |
             report
             automated issue
@@ -41,13 +44,16 @@ jobs:
           $cmdOutput = kubectl get pods --namespace ${{ secrets.NAMESPACE }} -l app=tester -o jsonpath='{.items[0].metadata.name}'
           echo $cmdOutput
           kubectl logs --namespace ${{ secrets.NAMESPACE }} $cmdOutput > prod.log
+          $a = "./prod.log"
+          $b = "./prod-utf8.log"
+          (Get-Content -path $a) | Set-Content -Encoding UTF8 -Path $b
         shell: powershell
 
       - name: Create Issue From File
         uses: peter-evans/create-issue-from-file@v4
         with:
           title: An production issue
-          content-filepath: prod.log
+          content-filepath: prod-utf8.log
           labels: |
             report
             bug
