@@ -8,7 +8,7 @@ jobs:
 
     environment: development
 
-    runs-on: ["self-hosted", "Linux", "x64"]
+    runs-on: ["self-hosted", "Windows", "x64"]
 
     steps:
       - name: script
@@ -20,7 +20,7 @@ jobs:
 
     environment: production
 
-    runs-on: ["self-hosted", "Linux", "x64"]
+    runs-on: ["self-hosted", "Windows", "x64"]
 
     steps:
       - name: script

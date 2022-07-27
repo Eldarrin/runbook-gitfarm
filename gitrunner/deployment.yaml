@@ -14,14 +14,18 @@ spec:
     spec:
       containers:
         - name: test-runner
-          image: "eldarrin/gitrunners/testrunner:latest"
+          image: "eldarrin/testrunner:latest"
           imagePullPolicy: Always
           env:
             - name: RUNNER_NAME
               value: "main"
+            - name: RUNNER_REPO
+              value: "eldarrin/runbook-gitfarm"
             - name: DISABLE_AUTO_UPDATE
               value: "true"
             - name: EPHEMERAL
               value: "true"
+            - name: LABELS
+              value: "main"
             - name: RUNNER_TOKEN
-              value: "{{ secrets.RUNNER_TOKEN }}"
+              value: "token"
