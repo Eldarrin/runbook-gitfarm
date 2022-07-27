@@ -1,0 +1,15 @@
+name: Really Sure?
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: not letting you pull
+        run: |
+          exit 1
