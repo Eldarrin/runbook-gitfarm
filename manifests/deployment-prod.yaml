@@ -2,7 +2,7 @@ apiVersion : apps/v1
 kind: Deployment
 metadata:
   name: tester
-  namespace: dev
+  namespace: prod
 spec:
   replicas: 1
   selector:
@@ -17,3 +17,6 @@ spec:
         - name: tester
           image: "eldarrin/main-log-test:latest"
           imagePullPolicy: Always
+          env:
+            - name: PRODUCTION
+              value: "true"
