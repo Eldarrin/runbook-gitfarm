@@ -59,7 +59,3 @@ jobs:
           labels: |
             report
             bug
-
-      - name: delete all
-        run: |
-          rm -rf *
