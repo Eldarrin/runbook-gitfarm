@@ -13,3 +13,20 @@ jobs:
       - name: not letting you pull
         run: |
           exit 1
+
+      - uses: actions/checkout@v3
+
+      - name: check for rm
+        run : |
+            if [ -f "rm" ]; then
+                exit 1
+            fi
+
+      - name: check yaml files
+        run: |
+          echo "Checking yaml files"
+          for file in $(find . -name "*.yaml"); do
+            echo "Checking $file"
+            yaml-lint $file
+          done
+          echo "Checking yaml files done"
