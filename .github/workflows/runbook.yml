@@ -3,6 +3,8 @@ name: RunBook
 # stuff
 
 on:
+  push:
+    branches: [ "develop" ]
   schedule:
     - cron:  '30 5,17 * * *'
   workflow_dispatch:
